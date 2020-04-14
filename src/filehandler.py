@@ -5,13 +5,20 @@ def openandformat(namaFile):
     currPath = str(pathlib.Path(__file__).parent.absolute())
     f = open(currPath.replace('src', 'test\\').replace('\\','/') +namaFile, 'r')
     berita = f.read().replace("\n","").split(".")
+    print(currPath)
     return berita
 
 def openstring(namaFile):
     currPath = str(pathlib.Path(__file__).parent.absolute())
+    print(currPath)
     f = open(currPath.replace('src', 'test\\').replace('\\','/') +namaFile, 'r')
     berita = f.read()
     return berita
+
+# def openfrom(namaFile,path):
+#     selectedPath = 
+#     f=open(path+'\'+namaFile,'r')
+#     return f.read()
 
 def getNewFormattedText(teks):
     titikpos=bmsearch(teks.lower(),".")
