@@ -16,17 +16,20 @@ def Apps(mypath, keyword):
         currPath=mypath+'/'+i
         f = open(currPath, 'r')
         article = f.read()
-        articles.append(article)
+        articles.append({'article': article, 'namafile':i})
 
     display=[]
     for berita in articles:
-        ekstrasi=exactMatchKMP(berita, keyword)
-        a=bmsearch(berita,keyword)
-        new={}
+        newstringart=berita['article']
+        ekstrasi=exactMatchREGEX(newstringart, keyword)
+        
         for el in ekstrasi:
+            new={}
             total=[]
             tanggal=[]
 
+            new["filename"] = berita['namafile']
+            new["user"]=el.replace("\n","")
             # get date
             date=dateregex1(el)
             if (len(date)==0):
@@ -42,10 +45,10 @@ def Apps(mypath, keyword):
             for i in arrayofnum:
                 total.append(i)
             
-            new["user"]=el.replace("\n","")
+            
             new["jumlah"]=total
             if (len(tanggal)==0):
-                new["tanggal"]=[getArticleDate(berita)]
+                new["tanggal"]=[getArticleDate(newstringart)]
             else:
                 new["tanggal"]=tanggal
             display.append(new)

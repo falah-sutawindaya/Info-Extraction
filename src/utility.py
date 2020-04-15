@@ -1,6 +1,7 @@
 import re
 from filehandler import *
 from exactregex import *
+from boyermore import *
 
 # Utility 
 def getType(e):
@@ -69,25 +70,18 @@ def getJumlahMin(el, keyword, no):
 
     datamin=[]
     for num in no:
-        minNumIdx=el.index(num)
-        maxNumIdx=minNumIdx+len(num)-1
-        if maxNumIdx<startIndex:
-            datamin.append({'angka': num, 'dist': startIndex-maxNumIdx})
-        elif minNumIdx>endIndex:
-            datamin.append({'angka': num, 'dist': minNumIdx-endIndex})
-        el=el[maxNumIdx::]
-    
+        idxlist=bmsearch(el, num)
+        for idx in idxlist:
+            if (idx<startIndex):
+                datamin.append({'angka': num, 'dist': startIndex-idx-len(num)+1})
+            else:
+                datamin.append({'angka': num, 'dist': idx-endIndex})
+        
     min = datamin[0]
-    # min=a[0]
+    
     for el in datamin:
         if (el['dist'] < min['dist']):
             min = el
-
+    
     return min['angka']
 
-# def getMinimumNumber(a):
-#     min=a[0]
-#     for el in a:
-#         if (el['dist'] < min['dist']):
-#             min = el
-#     return min['angka']
