@@ -1,3 +1,5 @@
+import re
+from kmpsearch import *
 from filehandler import *
 
 # EXACT MATCHING Boyer More 
@@ -26,6 +28,8 @@ def exactMatchBM(teks,pat):
 
     return result
 
+
+
 # EXACT MATCHING KMP
 def exactMatchKMP(teks,pat):
     result=[]
@@ -44,7 +48,7 @@ def exactMatchKMP(teks,pat):
         while newIndex>=0 and b[newIndex]!='.':
             sentecekiri+=b[newIndex]
             newIndex-=1
-        # print(sentecekiri[::-1].replace("NEOF",".")+sentencekanan.replace("NEOF",".")+".")
+
         result.append(sentecekiri[::-1].replace("NEOF",".")+sentencekanan.replace("NEOF",".")+".")
     
     for el in result:
@@ -57,7 +61,7 @@ def exactMatchREGEX(teks,pat):
     result=[]
     b = getNewFormattedText(teks)
     sentences = re.findall(r"([^.]*\.)" ,b.lower())
-    pat="terkonfirmasi positif"
+    
     if (".")==pat[-1]:
         pat=pat.replace(".","NEOF").split(" ")
     else:
