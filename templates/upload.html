@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+
+{% block hthree %} 
+  <h3 class="text-muted">File Terupload!</h3>
+{% endblock %} 
+
+
+{% block link %} 
+  {% for file in filenames %}
+    <li><a href="{{url_for('uploaded_file', filename=file)}}">{{file}}</a></li>
+  {% endfor %}
+{% endblock %} 

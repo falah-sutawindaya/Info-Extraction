@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <style>
+
+    .custom-file-input::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+    .custom-file-input::before {
+      content: 'Choose Files';
+      display: inline-block;
+      background: linear-gradient(top, #f9f9f9, #e3e3e3);
+      border: 1px solid #999;
+      border-radius: 3px;
+      padding: 5px 5px;
+      outline: none;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      cursor: pointer;
+      text-shadow: 1px 1px #fff;
+      font-weight: 700;
+      font-size: 10pt;
+    }
+    .custom-file-input:hover::before {
+      border-color: black;
+    }
+    .custom-file-input:active::before {
+      background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+      outline: 0;
+    }
+
+    .here {
+      content: 'Choose Files';
+      display: inline-block;
+      background: white;
+      border: 1px solid #999;
+      border-radius: 3px;
+      padding: 5px 5px;
+      outline: none;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      cursor: pointer;
+      text-shadow: 1px 1px #fff;
+      font-weight: 700;
+      font-size: 10pt;
+      position: relative;
+      top: -10px;
+    }
+
+    .here:hover {
+      border-color: black;
+    }
+
+    .bawahindikit {
+      position: relative;
+      top: 280px;
+    }
+
+    .benerinmargin {
+      margin-bottom: 12px;
+    }
+
+    
+    </style>
+
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">Pilih file yang ingin di uji</h3>
+      </div>
+      <hr/>
+      <div>
+      
+      <form action="upload" method="post" enctype="multipart/form-data">
+        <input type="file" multiple="" name="file[]" class="custom-file-input span3" /><br />
+        <input type="submit" value="Upload"  class="here custom-file-input span2">
+      </form>
+      </div>
+    </div>
+    <div class="bawahindikit container">
+      <hr class="benerinmargin"/>    
+      <p><a href="{{ url_for('profil') }}">Perihal</a></p>
+    </div>
+  </body>
+</html>
