@@ -4,14 +4,9 @@
 <h3 class="text-muted">Pencarian Keyword!</h3>
 {% endblock %}
 
-{% block link %}
-  {% for file in kirim[1] %}
-    <li><a href="{{url_for('uploaded_file', filename=file)}}">{{file}}</a></li>
-  {% endfor %}
-{% endblock %}
 
 {% block hasil %} 
-        <p style="margin-top: 10px;">Keyword: {{kirim[2]}}</p>
+        <p style="margin-top: 7px; margin-bottom: 10px;">Keyword: {{kirim[1]}}</p>
       {% for el in kirim[0]: %}
         <div class="infos">
         <p>Hasil Ekstrasi Informasi: </p>

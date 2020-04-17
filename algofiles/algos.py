@@ -8,8 +8,11 @@ from matchingexact import *
 from exactregex import *
 from utility import *
 
-
+# algos.py adalah file main untuk menghandle teks nya, berbagai algoritma yang modular akan di pakai disini
+# metod Apps akan menerima direktori folder dari file test, keyword masukan pengguna, dan option masukan pengguna
+# /(pemilihan algoritma)
 def Apps(mypath, keyword, option):
+    # mencari dan membuka artikel pada semua folder terkait
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     articles=[]
     for i in onlyfiles:
@@ -19,15 +22,17 @@ def Apps(mypath, keyword, option):
         articles.append({'article': article, 'namafile':i})
 
     hasil=[]
+    # memproses pencarian setiap berita pada artikel
     for berita in articles:
         newstringart=berita['article']
+        # Opsi untuk memilih algoritma pencarian
         if (option == 'option1'):
             ekstrasi=exactMatchBM(newstringart, keyword)
         elif (option == 'option2'):
             ekstrasi=exactMatchKMP(newstringart, keyword)
         elif (option == 'option3'):
             ekstrasi=exactMatchREGEX(newstringart, keyword)
-
+        # memproses setiap kalimat pada berita dan mengambil informasi penting
         for el in ekstrasi:
             new={}
             total=[]
@@ -57,6 +62,7 @@ def Apps(mypath, keyword, option):
                 new["tanggal"]=tanggal
             hasil.append(new)
 
+    # memilih / menyeleksi kembali informasi penting yang di kumpulkan
     b=[]
     for i in hasil:
         a={}

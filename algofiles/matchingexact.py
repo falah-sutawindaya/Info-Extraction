@@ -81,23 +81,26 @@ def exactMatchREGEX(teks,pat):
 
     return result
 
+def exactMatchREGEX2(teks, pat):
+    # inisiasi dan format teks 
+    teksFormat = getNewFormattedText(teks)
+    keywordregex=''
 
-# def exactMatchREGEX(teks,pat):
-#     result=[]
-#     b = getNewFormattedText(teks)
-#     sentences = re.findall(r"([^.]*\.)" ,b.lower())
+    # Case Sensitive Handler
+    for i in range(0,len(keyword)):
+        if keyword[i]==' ':
+            keywordregex+='[ ]'
+        else:
+            keywordregex+='['
+            keywordregex+=keyword[i]
+            keywordregex+=keyword[i].upper()
+            keywordregex+=']'
     
-#     if (".")==pat[-1]:
-#         pat=pat.replace(".","NEOF").split(" ")
-#     else:
-#         pat=pat.replace(".","NEOF").split(" ")
+    # Kalimat Processing Regex
+    reg=r'[.]?.+\s?{}\s?.*\.'.format(keywordregex)
+    search=re.findall(reg, teksFormat)
 
-#     for sentence in sentences:
-#         if all(word in sentence for word in pat):
-#             # print(sentence.replace("neof","."))
-#             result.append(sentence.replace("neof","."))
-    
-#     # for el in result:
-#     #     print(el)
+    return reg
 
-#     return result
+
+

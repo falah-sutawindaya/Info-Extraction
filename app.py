@@ -10,8 +10,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = currDir
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-# Persistent Variables
-filenames = []
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -24,7 +23,7 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload():
     uploaded_files = request.files.getlist("file[]")
-    # filenames = []
+    filenames = []
     for file in uploaded_files:
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -41,7 +40,7 @@ def hasil():
     text = request.form['text']
     option = request.form['inlineRadioOptions']
     kirim=Apps(currDir, text, option)
-    package=[kirim, filenames, text]
+    package=[kirim, text]
     return render_template('results.html', kirim=package)
 
 @app.route('/uploads/<filename>')
